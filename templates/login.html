@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        .error-message {
+            color: red;
+            font-weight: bold;
+            background-color: #332a2a;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="container-fluid">
+        <ul>
+            <li><strong>Video Summarizer</strong></li>
+        </ul>
+        <ul>
+             <li><a href="signup">Sign-up</a></li>
+         </ul>
+    </nav>
+
+    <!--Main content-->
+    <section>
+        <div class="container">
+            <article>
+                <form action="" method="post">{% csrf_token %}
+                    {% if error_message %}
+                        <div>
+                            <h2 class="error-message">
+                                {{error_message}}
+                            </h2>
+                        </div>
+                    {%endif%}
+                    <hgroup>
+                        <h2>Login</h2>
+                        <div>
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" placeholder="Please enter your username" aria-label="Username" required />
+                        </div>
+                        <div>
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Please enter your password" aria-label="Password" required />
+                        </div>
+                        <button class="outline" type="submit">Login</button>
+                    </hgroup>
+                </form>
+            </article>
+        </div>
+    </section>
+
+    <footer class="container">
+        <small>Powered by <a href="https://github.com/holipat">Aleyna</a> and AI <3</small>
+    </footer>
+</body>
+</html>

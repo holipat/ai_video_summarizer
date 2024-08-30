@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Summarizer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+    <style>
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to { 
+                transform: rotate(360deg);
+            }
+        }
+         
+        
+         @-webkit-keyframes rotate {
+            from {
+                -webkit-transform: rotate(0deg);
+            }
+            to { 
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        
+        .load {
+            width: 100px;
+            height: 100px;
+            margin: 110px auto 0;
+            border:solid 10px #8822aa;
+            border-radius: 50%;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+             -webkit-transition: all 0.5s ease-in;
+            -webkit-animation-name:             rotate; 
+            -webkit-animation-duration:         1.0s; 
+            -webkit-animation-iteration-count:  infinite;
+            -webkit-animation-timing-function: linear;
+                
+                 transition: all 0.5s ease-in;
+            animation-name:             rotate; 
+            animation-duration:         1.0s; 
+            animation-iteration-count:  infinite;
+            animation-timing-function: linear; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="container-fluid">
+        <ul>
+            <li><strong>Video Summarizer</strong></li>
+        </ul>
+        <ul>
+            <li><a href="logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- YouTube Section -->
+    <section aria-label="YouTube link">
+        <div class="container">
+            <article>
+                <hgroup>
+                    <h2>Enter YouTube Link</h2>
+                    <div>
+                        <input id="youtubeLink" type="url" placeholder="Paste YouTube link here">
+                        <button id="generateButton">Generate</button>
+                    </div>
+                </hgroup>
+            </article>
+        </div>
+    </section>
+
+    <!--Display Generated-->
+    <div>
+        <section class="container">
+            <article>
+                <h2>Generated Article</h2>
+                <!--Section for loading circle-->
+                <div style="display:none;" id="loading-circle" class="load"></div>
+                <div id="aiContent">
+                    
+
+                </div>
+            </article>
+        </section>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div>
+            <section>
+                <article>
+                    <hgroup>
+                        <h2>Welcome to Video Summarizer</h2>
+                        <h3>Paste YouTube links, and get AI-powered video summaries instantly!</h3>
+                    </hgroup>
+                    <p>Our platform simplifies your video consumption. Just paste a YouTube video link, and our AI will summarize the key points for you, saving you time and effort.</p>
+                    <h3>How it works</h3>
+                    <p>Simply paste the URL of any YouTube video into the box below, and let our AI handle the rest. In seconds, you'll receive a concise and accurate summary of the video content.</p>
+                    <h3>Get started now!</h3>
+                    <p>It's free and easy to use. Paste your link and watch AI do the magic.</p>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="container">
+        <small>Powered by <a href="https://github.com/holipat">Aleyna</a> and AI <3</small>
+    </footer>
+
+
+    <script>
+        document.getElementById('generateButton').addEventListener('click', async()=>{
+            const youtubeLink = document.getElementById('youtubeLink').value;
+            const aiContent = document.getElementById('aiContent');
+
+            if(youtubeLink){
+                aiContent.innerHTML = '';
+                document.getElementById('loading-circle').style.display = 'block';
+
+                const endpointUrl = '/generate-article';
+                alert("generate article urlsine bağlandik");
+
+                try{
+                    const  response = await fetch(endpointUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({link: youtubeLink}),
+                    });
+
+                    const data = await  response.json();
+                    alert("gonderdik bekliyoruz");
+                    aiContent.innerHTML = data.content;
+                } catch (error){
+                    console.error("Error occured: "), error;
+                    alert("Something went wrong. Please try again later.");
+                }
+                document.getElementById('loading-circle').style.display = 'none';
+            } else {
+                alert("Please enter a YouTube link");
+            }
+        })
+    </script>
+
+</body>
+
+</html>
