@@ -10,11 +10,11 @@
     <!-- Navbar -->
     <nav class="container-fluid">
         <ul>
-            <li><strong><a href=''>Video Summarizer</a></strong></li>
+            <li><strong><a href='/'>Video Summarizer</a></strong></li>
         </ul>
         <ul>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Sign-up</a></li>
+            <li><a href="/article-list"></a>Saved Articles</li>
+            <li><a href="logout">Logout</a></li>
          </ul>
     </nav>
     <!--Main Content--> 
@@ -26,14 +26,14 @@
                         <h2>Article Details</h2>
                         <hr>
                         <div>
-                            <h4>Article Title</h4>
-                            <p>This is the content.</p>
+                            <h4>{{article_posts_details.youtube_title}}</h4>
+                            <p>{{article_posts_details.generated_content}}</p>
                             <hr>
                             <h4>Youtube Title</h4>
-                            <p>Title of the video</p>
+                            <p>{{article_posts_details.youtube_title}}</p>
                             <hr>
                             <h4>Youtube Link</h4>
-                            <a href="#">https://www.youtube.com/</a>
+                            <a href="{{article_posts_details.youtube_link}}">{{article_posts_details.youtube_link}}</a>
                         </div>
                     </hgroup>
                 </article>

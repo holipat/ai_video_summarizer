@@ -58,6 +58,7 @@
             <li><strong>Video Summarizer</strong></li>
         </ul>
         <ul>
+            <li><a href="/article-list"></a>Saved Articles</li>
             <li><a href="logout">Logout</a></li>
         </ul>
     </nav>
@@ -127,7 +128,6 @@
                 document.getElementById('loading-circle').style.display = 'block';
 
                 const endpointUrl = '/generate-article';
-                alert("generate article urlsine bağlandik");
 
                 try{
                     const  response = await fetch(endpointUrl, {
@@ -139,7 +139,6 @@
                     });
 
                     const data = await  response.json();
-                    alert("gonderdik bekliyoruz");
                     aiContent.innerHTML = data.content;
                 } catch (error){
                     console.error("Error occured: "), error;

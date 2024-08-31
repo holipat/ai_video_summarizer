@@ -11,40 +11,37 @@
     <!-- Navbar -->
     <nav class="container-fluid">
         <ul>
-            <li><strong><a href=''>Video Summarizer</a></strong></li>
+            <li><strong><a href='/'>Video Summarizer</a></strong></li>
         </ul>
         <ul>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Sign-up</a></li>
+            <li><a href="/article-list"></a>Saved Articles</li>
+            <li><a href="logout">Logout</a></li>
          </ul>
     </nav>
 
     <!--Main Content Container-->
     <main class="container">
         <div class="grid">
-            <section>
                 <article>
                     <!--Articles Section-->
                     <section>
                         <hgroup>
                             <h2>All Articles</h2>
                             <div>
-                                <div>
-                                    <hr>
-                                    <h5 >Article Title 1</h5>
-                                    <p>This is the content. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quam a nam iure, consequatur ratione modi libero ab veniam laborum quidem unde architecto sed ipsa quisquam ullam, saepe aperiam? Numquam.</p>
-                                </div>
-                                <div>
-                                    <hr>
-                                    <h5 >Article Title 2</h5>
-                                    <p>This is the content. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quam a nam iure, consequatur ratione modi libero ab veniam laborum quidem unde architecto sed ipsa quisquam ullam, saepe aperiam? Numquam.</p>
-                                </div>
+                                {%for article in article_posts reversed%}
+                                <a href= "article-details/{{article.id}}">
+                                    <div>
+                                        <hr>
+                                        <h5 >{{article.youtube_title}}</h5>
+                                        <p>{{article.generated_content|truncatechars:80}}</p>
+                                    </div>
+                                </a>
+                                {%endfor%}
                                 <!--Repeat-->
                             </div>
                         </hgroup>
                     </section>
                 </article>
-            </section>
         </div>
     </main>
 
